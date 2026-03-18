@@ -32,11 +32,8 @@ const LoginScreen = ({navigation}) => {
     ]).start();
   }, []);
 
-  // ✅ Sadece rakam kabul et — çok katmanlı filtre
   const handleStudentNoChange = (text) => {
-    // Tüm rakam dışı karakterleri (harf, özel karakter, boşluk) sil
     const onlyNumbers = text.replace(/\D/g, '');
-    // Maksimum 3 karakter
     setStudentNo(onlyNumbers.slice(0, 3));
   };
 
@@ -64,16 +61,48 @@ const LoginScreen = ({navigation}) => {
         style={styles.header}
         start={{x: 0, y: 0}} end={{x: 1, y: 1}}>
 
-        <View style={styles.decorCircle1} />
-        <View style={styles.decorCircle2} />
+        {/* Dekoratif halkalar — logo ilhamı */}
+        <View style={styles.ring1} />
+        <View style={styles.ring2} />
+        <View style={styles.ring3} />
 
-        <Animated.View style={{opacity: titleAnim, transform: [{translateY: titleSlide}]}}>
-          <View style={styles.titleRow}>
-            <Text style={styles.samText}>SAM</Text>
-            <Text style={styles.moodText}>MOOD</Text>
+        {/* Nokta grid deseni */}
+        <View style={styles.dotGrid}>
+          {[...Array(12)].map((_, i) => (
+            <View key={i} style={styles.dot} />
+          ))}
+        </View>
+
+        <Animated.View style={[styles.headerContent, {opacity: titleAnim, transform: [{translateY: titleSlide}]}]}>
+
+          {/* Üst etiket */}
+          <View style={styles.topBadge}>
+            <View style={styles.topBadgeDot} />
+            <Text style={styles.topBadgeText}>SAMSUN ÜNİVERSİTESİ</Text>
+            <View style={styles.topBadgeDot} />
           </View>
-          <Text style={styles.tagline}>Samsun Üniversitesi © 2025</Text>
+
+          {/* Ana başlık */}
+          <View style={styles.titleWrap}>
+            <Text style={styles.samText}>SAM</Text>
+            <View style={styles.moodWrap}>
+              <Text style={styles.moodText}>MOOD</Text>
+              <View style={styles.moodUnderline} />
+            </View>
+          </View>
+
+          {/* Alt açıklama */}
+          <Text style={styles.tagline}>Ruh halinizi keşfedin · 2026</Text>
+
+          {/* Dekoratif çizgi */}
+          <View style={styles.dividerRow}>
+            <View style={styles.dividerLine} />
+            <Text style={styles.dividerIcon}>✦</Text>
+            <View style={styles.dividerLine} />
+          </View>
+
         </Animated.View>
+
         <View style={styles.wave} />
       </LinearGradient>
 
@@ -109,7 +138,7 @@ const LoginScreen = ({navigation}) => {
               autoCorrect={false}
               autoComplete="off"
               placeholder="Son 3 haneyi girin"
-              placeholderTextColor="#f48fb1"
+              placeholderTextColor="#a0aec0"
             />
             <TouchableOpacity
               onPress={() => setShowInfo(!showInfo)}
@@ -162,7 +191,10 @@ const LoginScreen = ({navigation}) => {
               colors={['#c2185b', '#e91e8c', '#ff5fa0']}
               style={styles.loginBtn}
               start={{x: 0, y: 0}} end={{x: 1, y: 0}}>
-              <Text style={styles.loginText}>GİRİŞ YAP →</Text>
+              <Text style={styles.loginText}>GİRİŞ YAP</Text>
+              <View style={styles.loginArrow}>
+                <Text style={styles.loginArrowText}>→</Text>
+              </View>
             </LinearGradient>
           </TouchableOpacity>
 
@@ -173,57 +205,84 @@ const LoginScreen = ({navigation}) => {
 };
 
 const styles = StyleSheet.create({
-  container: {flex: 1, backgroundColor: '#fafafa'},
+  container: {flex: 1, backgroundColor: '#f8fafc'},
 
-  header: {paddingTop: 72, paddingHorizontal: 28, paddingBottom: 60, overflow: 'hidden'},
-  decorCircle1: {position: 'absolute', width: 200, height: 200, borderRadius: 100, backgroundColor: 'rgba(255,255,255,0.07)', top: -60, right: -60},
-  decorCircle2: {position: 'absolute', width: 120, height: 120, borderRadius: 60, backgroundColor: 'rgba(255,255,255,0.05)', bottom: 20, left: -40},
+  // ── HEADER ──
+  header: {paddingTop: 64, paddingHorizontal: 28, paddingBottom: 56, overflow: 'hidden'},
 
-  titleRow: {flexDirection: 'row', alignItems: 'baseline', marginBottom: 6},
-  samText:  {fontSize: 58, fontWeight: '900', color: 'rgba(255,255,255,0.38)', letterSpacing: 2},
-  moodText: {fontSize: 58, fontWeight: '900', color: '#fff', letterSpacing: 2},
-  tagline:  {color: 'rgba(255,255,255,0.6)', fontSize: 12, fontWeight: '700', letterSpacing: 1},
+  // Dekoratif halkalar
+  ring1: {position:'absolute', width:220, height:220, borderRadius:110, borderWidth:1, borderColor:'rgba(255,255,255,0.08)', top:-60, right:-60},
+  ring2: {position:'absolute', width:140, height:140, borderRadius:70,  borderWidth:1, borderColor:'rgba(255,255,255,0.06)', top:-20, right:-20},
+  ring3: {position:'absolute', width:160, height:160, borderRadius:80,  borderWidth:1, borderColor:'rgba(255,255,255,0.05)', bottom:-40, left:-50},
 
-  wave: {position: 'absolute', bottom: 0, left: 0, right: 0, height: 32, backgroundColor: '#fafafa', borderTopLeftRadius: 32, borderTopRightRadius: 32},
+  // Nokta grid
+  dotGrid: {position:'absolute', bottom:40, right:24, flexDirection:'row', flexWrap:'wrap', width:60, gap:8},
+  dot:     {width:3, height:3, borderRadius:2, backgroundColor:'rgba(255,255,255,0.18)'},
 
-  formScroll: {flex: 1, backgroundColor: '#fafafa'},
-  formContent: {padding: 22, paddingTop: 16, paddingBottom: 36},
+  headerContent: {zIndex:2},
 
-  infoBox: {backgroundColor: '#fce4ec', borderRadius: 14, padding: 14, marginBottom: 14, borderLeftWidth: 3, borderLeftColor: '#c2185b'},
-  infoText: {color: '#880e4f', fontSize: 13, lineHeight: 20},
+  // Üst etiket
+  topBadge:    {flexDirection:'row', alignItems:'center', gap:8, marginBottom:16},
+  topBadgeDot: {width:4, height:4, borderRadius:2, backgroundColor:'rgba(255,255,255,0.4)'},
+  topBadgeText:{color:'rgba(255,255,255,0.55)', fontSize:10, fontWeight:'800', letterSpacing:3},
 
-  fieldLabel: {color: '#c2185b', fontSize: 11, fontWeight: '800', letterSpacing: 2, marginBottom: 8, marginTop: 4},
+  // Başlık
+  titleWrap: {flexDirection:'row', alignItems:'flex-end', gap:2, marginBottom:10},
+  samText:   {fontSize:52, fontWeight:'900', color:'rgba(255,255,255,0.28)', letterSpacing:3},
+  moodWrap:  {position:'relative'},
+  moodText:  {fontSize:52, fontWeight:'900', color:'#fff', letterSpacing:3},
+  moodUnderline: {position:'absolute', bottom:-4, left:0, right:0, height:3, backgroundColor:'#f48fb1', borderRadius:2},
 
-  card: {flexDirection: 'row', alignItems: 'center', backgroundColor: '#fff', borderRadius: 18, padding: 16, marginBottom: 16, borderWidth: 1.5, borderColor: '#f8bbd0', shadowColor: '#c2185b', shadowOpacity: 0.06, shadowRadius: 8, elevation: 2},
-  cardIcon: {fontSize: 22, marginRight: 12},
-  cardInput: {flex: 1, color: '#880e4f', fontSize: 18, fontWeight: '800'},
-  cardText:  {flex: 1, color: '#333', fontSize: 15, fontWeight: '600'},
+  tagline: {color:'rgba(255,255,255,0.5)', fontSize:12, fontWeight:'600', letterSpacing:1.5, marginBottom:18},
 
-  infoBtn: {width: 28, height: 28, borderRadius: 14, backgroundColor: '#c2185b', justifyContent: 'center', alignItems: 'center'},
-  infoBtnText: {color: '#fff', fontSize: 13, fontWeight: '900'},
+  // Dekoratif çizgi
+  dividerRow: {flexDirection:'row', alignItems:'center', gap:10},
+  dividerLine:{flex:1, height:1, backgroundColor:'rgba(255,255,255,0.12)'},
+  dividerIcon:{color:'rgba(255,255,255,0.3)', fontSize:10},
 
-  switchTag:       {color: '#f48fb1', fontSize: 14, fontWeight: '700', marginHorizontal: 5},
-  switchTagActive: {color: '#c2185b', fontWeight: '900'},
+  wave: {position:'absolute', bottom:0, left:0, right:0, height:32, backgroundColor:'#f8fafc', borderTopLeftRadius:32, borderTopRightRadius:32},
 
-  genderRow: {flexDirection: 'row', gap: 12, marginBottom: 16},
-  genderCard: {flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, paddingVertical: 14, backgroundColor: '#fff', borderRadius: 16, borderWidth: 1.5, borderColor: '#f8bbd0'},
-  genderCardMale:   {backgroundColor: '#e3f2fd', borderColor: '#90caf9'},
-  genderCardFemale: {backgroundColor: '#fce4ec', borderColor: '#f48fb1'},
-  genderSymbol:        {fontSize: 22, color: '#ddd'},
-  genderSymbolMale:    {color: '#1565c0'},
-  genderSymbolFemale:  {color: '#c2185b'},
-  genderLabel:         {fontSize: 15, fontWeight: '700', color: '#ccc'},
-  genderLabelMale:     {color: '#1565c0'},
-  genderLabelFemale:   {color: '#c2185b'},
+  // ── FORM ──
+  formScroll:  {flex:1, backgroundColor:'#f8fafc'},
+  formContent: {padding:22, paddingTop:18, paddingBottom:36},
 
-  kvkkRow:  {flexDirection: 'row', alignItems: 'center', gap: 10, marginBottom: 20, paddingHorizontal: 4},
-  kvkkCheck: {width: 20, height: 20, borderRadius: 6, backgroundColor: '#fce4ec', borderWidth: 1.5, borderColor: '#f48fb1', justifyContent: 'center', alignItems: 'center'},
-  kvkkCheckText: {color: '#c2185b', fontSize: 12, fontWeight: '900'},
-  kvkkText: {flex: 1, color: '#aaa', fontSize: 12, lineHeight: 18},
+  infoBox:  {backgroundColor:'#fce4ec', borderRadius:14, padding:14, marginBottom:14, borderLeftWidth:3, borderLeftColor:'#c2185b'},
+  infoText: {color:'#880e4f', fontSize:13, lineHeight:20},
 
-  loginWrap: {borderRadius: 18, overflow: 'hidden', shadowColor: '#c2185b', shadowOpacity: 0.35, shadowRadius: 10, elevation: 6},
-  loginBtn:  {paddingVertical: 18, alignItems: 'center'},
-  loginText: {color: '#fff', fontSize: 18, fontWeight: '900', letterSpacing: 2},
+  fieldLabel: {color:'#c2185b', fontSize:11, fontWeight:'800', letterSpacing:2, marginBottom:8, marginTop:4},
+
+  card:      {flexDirection:'row', alignItems:'center', backgroundColor:'#fff', borderRadius:18, padding:16, marginBottom:16, borderWidth:1.5, borderColor:'#f8bbd0', shadowColor:'#c2185b', shadowOpacity:0.07, shadowRadius:8, elevation:2},
+  cardIcon:  {fontSize:22, marginRight:12},
+  cardInput: {flex:1, color:'#880e4f', fontSize:18, fontWeight:'800'},
+  cardText:  {flex:1, color:'#333', fontSize:15, fontWeight:'600'},
+
+  infoBtn:     {width:28, height:28, borderRadius:14, backgroundColor:'#c2185b', justifyContent:'center', alignItems:'center'},
+  infoBtnText: {color:'#fff', fontSize:13, fontWeight:'900'},
+
+  switchTag:       {color:'#f48fb1', fontSize:14, fontWeight:'700', marginHorizontal:5},
+  switchTagActive: {color:'#c2185b', fontWeight:'900'},
+
+  genderRow:        {flexDirection:'row', gap:12, marginBottom:16},
+  genderCard:       {flex:1, flexDirection:'row', alignItems:'center', justifyContent:'center', gap:8, paddingVertical:14, backgroundColor:'#fff', borderRadius:16, borderWidth:1.5, borderColor:'#f8bbd0'},
+  genderCardMale:   {backgroundColor:'#eff6ff', borderColor:'#93c5fd'},
+  genderCardFemale: {backgroundColor:'#fce4ec', borderColor:'#f48fb1'},
+  genderSymbol:        {fontSize:22, color:'#ddd'},
+  genderSymbolMale:    {color:'#1565c0'},
+  genderSymbolFemale:  {color:'#c2185b'},
+  genderLabel:         {fontSize:15, fontWeight:'700', color:'#ccc'},
+  genderLabelMale:     {color:'#1565c0'},
+  genderLabelFemale:   {color:'#c2185b'},
+
+  kvkkRow:      {flexDirection:'row', alignItems:'center', gap:10, marginBottom:20, paddingHorizontal:4},
+  kvkkCheck:    {width:20, height:20, borderRadius:6, backgroundColor:'#fce4ec', borderWidth:1.5, borderColor:'#f48fb1', justifyContent:'center', alignItems:'center'},
+  kvkkCheckText:{color:'#c2185b', fontSize:12, fontWeight:'900'},
+  kvkkText:     {flex:1, color:'#94a3b8', fontSize:12, lineHeight:18},
+
+  loginWrap: {borderRadius:18, overflow:'hidden', shadowColor:'#c2185b', shadowOpacity:0.4, shadowRadius:12, elevation:8},
+  loginBtn:  {paddingVertical:18, flexDirection:'row', alignItems:'center', justifyContent:'center', gap:12},
+  loginText: {color:'#fff', fontSize:17, fontWeight:'900', letterSpacing:2},
+  loginArrow:{width:32, height:32, borderRadius:16, backgroundColor:'rgba(255,255,255,0.2)', justifyContent:'center', alignItems:'center'},
+  loginArrowText:{color:'#fff', fontSize:16, fontWeight:'900'},
 });
 
 export default LoginScreen;

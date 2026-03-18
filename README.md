@@ -11,9 +11,7 @@
 
 ## 📱 Ekran Görüntüleri
 
-<img src="screenshots/home.png" width="200"/>
-<img src="screenshots/iyiolus.png" width="200"/>
-<img src="screenshots/login.png" width="200"/>
+<img src="screenshots/home.png" width="200"/> <img src="screenshots/iyiolus.png" width="200"/> <img src="screenshots/login.png" width="200"/>
 
 ---
 
@@ -54,7 +52,7 @@ Uygulama, motivasyonu artırmak amacıyla **oyunlaştırma (gamification)** dina
 
 ## 📦 APK İndirme
 
-> **[⬇️ SamMood APK'yı İndir](./apk/app-debug.apk)**
+> **[⬇️ SamMood APK'yı İndir](https://drive.google.com/file/d/10Uk-LStlWAVSd3jy26O-kefi1GwlVQ_I/view?usp=drive_link)**
 
 *APK dosyasını cihazınıza yüklemek için Ayarlar > Güvenlik > Bilinmeyen Kaynaklar seçeneğini etkinleştirin.*
 

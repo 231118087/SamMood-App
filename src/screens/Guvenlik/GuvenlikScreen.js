@@ -203,7 +203,7 @@ const GuvenlikScreen = ({navigation}) => {
           <Text style={s.logoutText}>🚪  Çıkış Yap</Text>
         </TouchableOpacity>
 
-        <Text style={s.footer}>🎓 Samsun Üniversitesi © 2025</Text>
+        <Text style={s.footer}>🎓 Samsun Üniversitesi © 2026</Text>
       </ScrollView>
 
       {/* ── KADES modal ── */}
@@ -267,35 +267,35 @@ const s = StyleSheet.create({
   statKey: {color:'rgba(255,255,255,0.72)', fontSize:10, fontWeight:'700', marginTop:1},
 
   // badges
-  sectionHeader:{flexDirection:'row', alignItems:'center', justifyContent:'space-between', marginBottom:8},
-  sectionLabel: {color:'#64748b', fontSize:10, fontWeight:'800', letterSpacing:2},
-  pill:         {borderRadius:7, paddingHorizontal:7, paddingVertical:2},
-  pillText:     {fontSize:10, fontWeight:'800'},
-  sectionSub:   {color:'#94a3b8', fontSize:12, marginBottom:10},
+  sectionHeader:{flexDirection:'row', alignItems:'center', justifyContent:'space-between', marginBottom:10},
+  sectionLabel: {color:'#475569', fontSize:12, fontWeight:'800', letterSpacing:1.5},
+  pill:         {borderRadius:8, paddingHorizontal:9, paddingVertical:3},
+  pillText:     {fontSize:12, fontWeight:'800'},
+  sectionSub:   {color:'#94a3b8', fontSize:13, marginBottom:12},
 
-  badgeGrid:   {flexDirection:'row', flexWrap:'wrap', gap:8, marginBottom:4},
-  badgeItem:   {alignItems:'center', width:48},
-  badgeLocked: {opacity:0.55},
-  badgeCircle: {width:40, height:40, borderRadius:12, justifyContent:'center', alignItems:'center', marginBottom:4},
-  badgeEmoji:  {fontSize:20},
-  badgeLabel:  {color:'#475569', fontSize:9, fontWeight:'700', textAlign:'center'},
+  badgeGrid:   {flexDirection:'row', justifyContent:'space-between', marginBottom:12},
+  badgeItem:   {alignItems:'center', flex:1},
+  badgeLocked: {opacity:0.45},
+  badgeCircle: {width:52, height:52, borderRadius:16, justifyContent:'center', alignItems:'center', marginBottom:7},
+  badgeEmoji:  {fontSize:26},
+  badgeLabel:  {color:'#334155', fontSize:12, fontWeight:'700', textAlign:'center'},
 
   // action cards
-  actionCard: {borderRadius:16, marginBottom:8, overflow:'hidden', shadowColor:'#000', shadowOpacity:0.05, shadowRadius:6, elevation:2},
-  actionGrad: {flexDirection:'row', alignItems:'center', gap:10, padding:12, borderRadius:16, borderWidth:1.5, borderColor:'rgba(0,0,0,0.05)'},
-  actionIcon: {width:40, height:40, borderRadius:12, justifyContent:'center', alignItems:'center'},
-  actionEmoji:{fontSize:20},
+  actionCard: {borderRadius:18, marginBottom:10, overflow:'hidden', shadowColor:'#000', shadowOpacity:0.06, shadowRadius:8, elevation:3},
+  actionGrad: {flexDirection:'row', alignItems:'center', gap:12, padding:14, borderRadius:18, borderWidth:1.5, borderColor:'rgba(0,0,0,0.05)'},
+  actionIcon: {width:46, height:46, borderRadius:14, justifyContent:'center', alignItems:'center'},
+  actionEmoji:{fontSize:24},
   actionText: {flex:1},
-  actionTitle:{fontSize:14, fontWeight:'900', marginBottom:1},
-  actionDesc: {fontSize:11, color:'#94a3b8', fontWeight:'500'},
-  actionArrow:{width:28, height:28, borderRadius:8, justifyContent:'center', alignItems:'center'},
-  arrowText:  {color:'#fff', fontSize:20, fontWeight:'700', lineHeight:24},
+  actionTitle:{fontSize:15, fontWeight:'900', marginBottom:2},
+  actionDesc: {fontSize:12, color:'#94a3b8', fontWeight:'500'},
+  actionArrow:{width:32, height:32, borderRadius:10, justifyContent:'center', alignItems:'center'},
+  arrowText:  {color:'#fff', fontSize:22, fontWeight:'700', lineHeight:28},
 
   // logout
-  logoutBtn:  {marginTop:6, backgroundColor:'#fff', borderRadius:14, paddingVertical:13, alignItems:'center', borderWidth:1.5, borderColor:'#fecdd3'},
-  logoutText: {color:'#e11d48', fontSize:14, fontWeight:'800'},
+  logoutBtn:  {marginTop:8, backgroundColor:'#fff', borderRadius:16, paddingVertical:15, alignItems:'center', borderWidth:1.5, borderColor:'#fecdd3'},
+  logoutText: {color:'#e11d48', fontSize:15, fontWeight:'800'},
 
-  footer:{color:'#cbd5e1', textAlign:'center', fontSize:11, fontWeight:'700', marginTop:12},
+  footer:{color:'#94a3b8', textAlign:'center', fontSize:12, fontWeight:'700', marginTop:16},
 });
 
 const m = StyleSheet.create({

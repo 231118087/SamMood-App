@@ -5,7 +5,7 @@
 ![Platform](https://img.shields.io/badge/platform-Android-brightgreen)
 ![Framework](https://img.shields.io/badge/React%20Native-0.73-blue)
 ![License](https://img.shields.io/badge/license-MIT-purple)
-![Universite](https://img.shields.io/badge/Samsun%20Üniversitesi-2025-orange)
+![Universite](https://img.shields.io/badge/Samsun%20Üniversitesi-2026-orange)
 
 ---
 
@@ -75,8 +75,8 @@ java --version   # JDK 17 olmalı
 ### 1. Repoyu Klonlayın
 
 ```bash
-git clone https://github.com/ipekbalkiz/sammood.git
-cd sammood
+git clone https://github.com/231118087/SamMood-App.git
+cd SamMood-App
 ```
 
 ### 2. Bağımlılıkları Yükleyin
